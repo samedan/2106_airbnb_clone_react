@@ -2,6 +2,7 @@
 @import "./header.scss";
 @import "./rental-home.scss";
 @import "./rental-detail.scss";
+@import "./forms.scss";
 
 html,
 body {
@@ -38,14 +39,14 @@ body {
 }
 
 .btn.btn-bwm-main {
-  border-color: $main-app-color;
-  color: $main-app-color;
+  border-color: $dark-gray-color;
+  color: $dark-gray-color;
 }
 
 .btn {
   &.btn-bwm-main {
-    border-color: $main-app-color;
-    color: $main-app-color;
+    border-color: $dark-gray-color;
+    color: $dark-gray-color;
     &:hover,
     &:focus,
     &:active {

@@ -1,19 +1,21 @@
-import { rentalData } from "../store/data";
+import axios from "axios";
 
-export const fetchRentals = () => {
-  return {
+export const fetchRentals = () => async (dispatch) => {
+  const res = await axios.get("/api/v1/rentals");
+  dispatch({
     type: "FETCH_RENTALS",
-    rentals: rentalData,
-  };
+    rentals: res.data,
+  });
 };
 
-export const fetchRentalById = (rentalId) => {
-  const rental = rentalData.find((rental) => rental._id === rentalId);
+export const fetchRentalById = (rentalId) => async (dispatch) => {
+  dispatch({ type: "IS_FETCHING_DATA" });
+  const res = await axios.get(`/api/v1/rentals/${rentalId}`);
 
-  return {
+  dispatch({
     type: "FETCH_RENTAL_BY_ID",
-    rental,
-  };
+    rental: res.data,
+  });
 };
 
 export const createRental = (rental) => {
