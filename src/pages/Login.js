@@ -6,10 +6,18 @@ class Login extends React.Component {
     password: "",
   };
 
-  handleEmailChange = (event) => {
-    const email = event.target.value;
-    this.setState({ email });
-    console.log(this.state);
+  handleInputChange = (event) => {
+    // const value = event.target.name;
+    const { value, name } = event.target;
+    const a = { [name]: value };
+    const b = { name: value };
+    console.log("a", a);
+    console.log("b", b);
+    this.setState({ [name]: value });
+  };
+
+  handleSubmit = (event) => {
+    alert(JSON.stringify(this.state));
   };
 
   render() {
@@ -26,7 +34,9 @@ class Login extends React.Component {
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input
-                    onChange={this.handleEmailChange}
+                    name="email"
+                    onChange={this.handleInputChange}
+                    value={this.state.email}
                     type="email"
                     className="form-control"
                     id="email"
@@ -43,12 +53,19 @@ class Login extends React.Component {
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
                   <input
+                    name="password"
+                    onChange={this.handleInputChange}
+                    value={this.state.oassword}
                     type="password"
                     className="form-control"
                     id="password"
                   />
                 </div>
-                <button type="submit" className="btn btn-bwm-main">
+                <button
+                  onClick={this.handleSubmit}
+                  type="button"
+                  className="btn btn-bwm-main"
+                >
                   Submit
                 </button>
               </form>
