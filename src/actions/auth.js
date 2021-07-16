@@ -4,13 +4,13 @@ const { bwmAxios } = axiosService;
 
 export const registerUser = (registerData) => {
   return bwmAxios
-    .post("/api/v1/users/register", registerData)
+    .post("/users/register", registerData)
     .catch((error) => Promise.reject(extractApiErrors(error.response || {})));
 };
 
 export const loginUser = (loginData) => {
   return bwmAxios
-    .post("/api/v1/users/login", loginData)
+    .post("/users/login", loginData)
     .then((res) => res.data)
     .catch((error) => Promise.reject(extractApiErrors(error.response || {})));
 };

@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { initStore } from "./store";
 import { AuthProvider, useAuth } from "providers/AuthProvider";
 import { MapProvider } from "providers/MapProvider";
+import { ToastContainer } from "react-toastify";
 
 const store = initStore();
 
@@ -37,6 +38,7 @@ const BwmApp = () => {
 const App = () => {
   return (
     <Providers>
+      <ToastContainer />
       <BwmApp />
     </Providers>
   );
