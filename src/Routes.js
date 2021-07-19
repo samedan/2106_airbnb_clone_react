@@ -8,6 +8,7 @@ import SecretPage from "pages/SecretPage";
 import AuthRoute from "components/auth/AuthRoute";
 import GuestRoute from "components/auth/GuestRoute";
 import RentalNew from "pages/RentalNew";
+import RentalHomeSearch from "pages/RentalHomeSearch";
 
 const Routes = () => {
   return (
@@ -15,6 +16,9 @@ const Routes = () => {
       <Switch>
         <Route exact path="/">
           <RentalHome />
+        </Route>
+        <Route path="/rentals/:location/homes">
+          <RentalHomeSearch />
         </Route>
         <AuthRoute path="/rentals/new">
           <RentalNew />

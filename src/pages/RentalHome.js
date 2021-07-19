@@ -44,7 +44,7 @@ class RentalHome extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    rentals: state.rentals,
+    rentals: state.rentals.items,
   };
 };
 

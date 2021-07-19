@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import RentalSearchInput from "components/rental/RentalSearchInput";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -24,20 +25,7 @@ const Header = ({ username, isAuth, logout }) => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         {/* Search form */}
-        <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2 bwm-search"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0 btn-bwm-main"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+        <RentalSearchInput />
         {/* Menu items */}
         <ul className="navbar-nav ml-auto">
           {isAuth && (
