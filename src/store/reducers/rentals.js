@@ -12,12 +12,22 @@ const initRentalsReducer = () => {
         return state;
     }
   };
+  const cities = (state = [], action) => {
+    switch (action.type) {
+      case "READ_ALL_CITIES":
+        return action.cities;
+
+      default:
+        return state;
+    }
+  };
 
   const isFetching = isFetchingReducer("rentals");
 
   return combineReducers({
     items,
     isFetching,
+    cities,
   });
 };
 

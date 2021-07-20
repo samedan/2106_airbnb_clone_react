@@ -1,11 +1,12 @@
 import React from "react";
 import RentalCard from "components/rental/RentalCard";
 import { connect } from "react-redux";
-import { createRental, fetchRentals } from "actions";
+import { createRental, fetchRentals, readCitiesRentals } from "actions";
 
 class RentalHome extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchRentals());
+    this.props.dispatch(readCitiesRentals());
   }
 
   renderRentals = (rentals) =>
@@ -45,6 +46,7 @@ class RentalHome extends React.Component {
 const mapStateToProps = (state) => {
   return {
     rentals: state.rentals.items,
+    cities: state.rentals.cities,
   };
 };
 

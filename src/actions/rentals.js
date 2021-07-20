@@ -14,6 +14,23 @@ export const fetchRentals = (location) => (dispatch) => {
   });
 };
 
+export const readCitiesRentals = () => (dispatch) => {
+  const query = `/rentals`;
+  // dispatch({ type: "REQUEST_DATA", resource: "rentals" });
+  bwmAxios.get(query).then((res) => {
+    let cities = [];
+    // console.log(res.data);
+    res.data.map((item) => cities.push(item.city));
+    // console.log("cities", cities);
+    // return cities;
+    // dispatch({ type: "REQUEST_DATA_COMPLETE", resource: "rentals" });
+    dispatch({
+      type: "READ_ALL_CITIES",
+      cities: cities,
+    });
+  });
+};
+
 export const fetchRentalById = (rentalId) => async (dispatch) => {
   dispatch({ type: "REQUEST_DATA", resource: "rental" });
   const res = await bwmAxios.get(`/rentals/${rentalId}`);

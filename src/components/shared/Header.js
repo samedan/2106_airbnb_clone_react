@@ -5,7 +5,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 // 'logout' function coming from App.js
-const Header = ({ username, isAuth, logout }) => {
+const Header = ({ username, isAuth, logout, rentals }) => {
+  // console.log(rentals.cities);
+  // if (
+  //   rentals &&
+  //   !rentals.isFetching &&
+  //   rentals.items.length > 0 &&
+  //   rentals.cities.length > 0 &&
+  //   rentals.items !== null &&
+  //   rentals.cities !== null
+  // ) {
+  //   console.log("cities", rentals.cities);
+  //   console.log("items", rentals.items);
+  // }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -25,7 +38,20 @@ const Header = ({ username, isAuth, logout }) => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         {/* Search form */}
-        <RentalSearchInput />
+        {rentals &&
+          !rentals.isFetching &&
+          // rentals.items.length > 0 &&
+          rentals.cities.length > 0 &&
+          // rentals.items !== null &&
+          rentals.cities !== null && (
+            <RentalSearchInput cities={rentals.cities} />
+          )}
+
+        {/* {!rentals.isFetching && rentals.items.length > 0 && (
+          // <RentalSearchInput rentals={getAvailableCities()} />
+          <RentalSearchInput cities={rentals.cities} />
+        )} */}
+
         {/* Menu items */}
         <ul className="navbar-nav ml-auto">
           {isAuth && (
@@ -87,10 +113,11 @@ const Header = ({ username, isAuth, logout }) => {
   );
 };
 
-const mapStateToProps = ({ auth: { username, isAuth } }) => {
+const mapStateToProps = ({ auth: { username, isAuth }, rentals }) => {
   return {
     username: username,
     isAuth: isAuth,
+    rentals: rentals,
   };
 };
 

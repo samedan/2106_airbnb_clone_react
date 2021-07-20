@@ -35,7 +35,7 @@ export const MapProvider = ({ children, apiKey }) => {
     });
     // Adds ZOOM Buttons
     map.addControl(new tt.NavigationControl());
-    console.log("cache ", cache.current);
+    // console.log("cache ", cache.current);
     return map;
   };
 
@@ -66,20 +66,20 @@ export const MapProvider = ({ children, apiKey }) => {
   };
 
   const getGeoPosition = (location) => {
-    console.log("decide if have Cache or Not");
+    // console.log("decide if have Cache or Not");
     const cachedPosition = getCachedLocation(location);
-    if (cachedPosition) {
-      console.log("Yes, cache");
-    } else {
-      console.log("NO cache");
-    }
+    // if (cachedPosition) {
+    //   console.log("Yes, cache");
+    // } else {
+    //   console.log("NO cache");
+    // }
     return cachedPosition
       ? Promise.resolve(cachedPosition)
       : requestGeoLocation(location);
   };
 
   const requestGeoLocation = (location) => {
-    console.log("Getting the Position from TomTom");
+    // console.log("Getting the Position from TomTom");
     // check cache first
     return axios
       .get(

@@ -2,3 +2,6 @@
 https://developer.tomtom.com/maps-sdk-web-js-v5/documentation
 
 > Marker div.bwm-marker
+
+> For the Search Input Field
+http://ericgio.github.io/react-bootstrap-typeahead/
