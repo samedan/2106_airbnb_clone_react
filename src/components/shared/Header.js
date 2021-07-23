@@ -6,19 +6,6 @@ import { Link } from "react-router-dom";
 
 // 'logout' function coming from App.js
 const Header = ({ username, isAuth, logout, rentals }) => {
-  // console.log(rentals.cities);
-  // if (
-  //   rentals &&
-  //   !rentals.isFetching &&
-  //   rentals.items.length > 0 &&
-  //   rentals.cities.length > 0 &&
-  //   rentals.items !== null &&
-  //   rentals.cities !== null
-  // ) {
-  //   console.log("cities", rentals.cities);
-  //   console.log("items", rentals.items);
-  // }
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
@@ -47,11 +34,6 @@ const Header = ({ username, isAuth, logout, rentals }) => {
             <RentalSearchInput cities={rentals.cities} />
           )}
 
-        {/* {!rentals.isFetching && rentals.items.length > 0 && (
-          // <RentalSearchInput rentals={getAvailableCities()} />
-          <RentalSearchInput cities={rentals.cities} />
-        )} */}
-
         {/* Menu items */}
         <ul className="navbar-nav ml-auto">
           {isAuth && (
@@ -68,9 +50,9 @@ const Header = ({ username, isAuth, logout, rentals }) => {
           {isAuth && (
             <>
               <li className="nav-item dropdown">
-                <Link
+                <a
                   className="nav-link dropdown-toggle"
-                  to="/"
+                  href="#"
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
@@ -78,15 +60,24 @@ const Header = ({ username, isAuth, logout, rentals }) => {
                   aria-expanded="false"
                 >
                   Manage
-                </Link>
+                </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <Link className="dropdown-item" to="/rentals/new">
-                    Add New Rental
+                    New Rental
+                  </Link>
+                  <Link className="dropdown-item" to="/rentals/manage">
+                    Manage Rentals
+                  </Link>
+                  <Link className="dropdown-item" to="/bookings/manage">
+                    Manage Bookings
+                  </Link>
+                  <Link className="dropdown-item" to="/bookings/received">
+                    Received Bookings
                   </Link>
                 </div>
               </li>
               <li className="nav-item">
-                <div className="nav-link" onClick={logout}>
+                <div onClick={logout} className="nav-link">
                   Logout
                 </div>
               </li>

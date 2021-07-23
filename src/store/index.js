@@ -3,6 +3,7 @@ import rentals from "./reducers/rentals";
 import rental from "./reducers/rental";
 import auth from "./reducers/auth";
 import thunk from "redux-thunk";
+import manage from "./reducers/manage";
 
 const addPromiseToDispatch = (store) => {
   const { dispatch } = store;
@@ -22,6 +23,7 @@ export function initStore() {
     rentals,
     rental,
     auth,
+    manage,
   });
 
   const composeEnhancers =
