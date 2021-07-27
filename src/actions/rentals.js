@@ -1,3 +1,4 @@
+import { deleteResource } from "actions";
 import axiosService from "services/AxiosService";
 const { bwmAxios } = axiosService;
 
@@ -57,4 +58,14 @@ export const fetchRentalById = (rentalId) => async (dispatch) => {
 
 export const createRental = (rental) => {
   return bwmAxios.post("/rentals", rental);
+};
+
+// DELETE
+export const deleteRental = (rentalId) => (dispatch) => {
+  return dispatch(
+    deleteResource({
+      url: `/rentals/${rentalId}`,
+      resource: "manage-rentals",
+    })
+  );
 };

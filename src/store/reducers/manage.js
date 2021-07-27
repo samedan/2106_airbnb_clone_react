@@ -5,7 +5,7 @@ const initManageReducer = () => {
   return combineReducers({
     rentals: createList("manage-rentals"),
     bookings: createList("manage-bookings"),
-    receivedBooking: createList("received-bookings"),
+    receivedBookings: createList("received-bookings"),
   });
 };
 

@@ -1,31 +1,61 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { capitalize, formatDate } from "helpers/functions";
+import ApiErrors from "components/forms/ApiErrors";
 
-const BookingListing = () => {
+const BookingListing = ({
+  bookings,
+  type,
+  title = "Bookings I've made",
+  renderMenu,
+  errors,
+  isFetching,
+}) => {
   return (
     <section className="booking-listing">
-      <h1 className="page-title">Page Title</h1>
+      <h1 className="page-title">{title}</h1>
+      {!isFetching && bookings.length === 0 && (
+        <p className="alert alert-warning">No bookings created</p>
+      )}
+      <ApiErrors errors={errors} />
       <div className="row">
         {/* Iterate Bookings */}
-        <div className="col-md-4">
-          <div className="card text-center">
-            {/* Only if 'received' booking */}
-            <div className="card-header">From: Some User</div>
-            {/* Only if 'received' booking END */}
-            <div className="card-block">
-              <h4 className="card-title">Rental Title - Rental City </h4>
-              <p className="card-text booking-days">
-                2020/02/02 - 2020/02/07 | 5 nights
-              </p>
-              <p className="card-text">
-                <span>Price: </span>{" "}
-                <span className="booking-price-value">$250</span>
-              </p>
-              <a className="btn bwm-btn-main">Go to Rental</a>
-              <button className="ml-1 btn btn-danger">Delete</button>
+        {bookings.map((booking) => (
+          <div className="col-md-4" key={booking._id}>
+            <div className="card text-center">
+              {/* Only if 'received' booking */}
+              {type === "received" && (
+                <div className="card-header">
+                  From: <i>{booking.user.username}</i>
+                </div>
+              )}
+
+              <div className="card-block">
+                <h4 className="card-title">
+                  {booking.rental.title} - {capitalize(booking.rental.city)}
+                </h4>
+                <p className="card-text booking-days">
+                  {formatDate(booking.startAt)} - {formatDate(booking.endAt)} |{" "}
+                  {booking.nights} nights
+                </p>
+                <p className="card-text">
+                  <span>Price: </span>{" "}
+                  <span className="booking-price-value">$250</span>
+                </p>
+                <Link
+                  to={{ pathname: `/rentals/${booking.rental._id}` }}
+                  className="btn btn-bwm-main"
+                >
+                  Go to Rental
+                </Link>
+                {renderMenu && renderMenu(booking._id)}
+              </div>
+              <div className="card-footer text-muted">
+                Created at {formatDate(booking.createdAt)}
+              </div>
             </div>
-            <div className="card-footer text-muted">Created at 2020/02/01</div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );

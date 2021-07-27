@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const capitalize = (value) => {
   if (!value || typeof value !== "string") {
     return "";
@@ -14,4 +16,12 @@ export const capitalize = (value) => {
       // San + " "+ Francisco
       .join(" ")
   );
+};
+
+export const formatDate = (date, dateFormat = "YYYY/MM/DD") => {
+  if (!date || typeof date !== "string") {
+    return "";
+  } else {
+    return moment(date).format(dateFormat);
+  }
 };

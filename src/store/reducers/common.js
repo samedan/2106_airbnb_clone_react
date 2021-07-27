@@ -10,6 +10,30 @@ export const itemsReducer = (resource) => {
         return [];
       case "REQUEST_DATA_COMPLETE":
         return action.data;
+      case "DELETE_RESOURCE":
+        const index = state.findIndex((i) => i._id === action.id);
+        // const newState = state.slice();
+        // newState.splice(index, 1);
+        // return newState;
+        return state.filter((item, itemIndex) => index !== itemIndex);
+      default:
+        return state;
+    }
+  };
+};
+
+export const errorsReducer = (resource) => {
+  return (state = [], action) => {
+    if (resource !== action.resource) {
+      return state;
+    }
+    switch (action.type) {
+      case "REQUEST_DATA":
+      case "DELETE_RESOURCE":
+        return [];
+      case "REQUEST_ERROR":
+        return action.errors;
+
       default:
         return state;
     }
@@ -35,9 +59,11 @@ export const isFetchingReducer = (resource) => {
 export const createList = (resource) => {
   const items = itemsReducer(resource);
   const isFetching = isFetchingReducer(resource);
+  const errors = errorsReducer(resource);
 
   return combineReducers({
     items,
     isFetching,
+    errors,
   });
 };
